@@ -3,51 +3,68 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using NET.W._2018.Соколовский._01._5.Properties;
 
 namespace NET.W._2018.Соколовский._01._5
 {
     public class SortClass
     {
-        public static int[] MergeSort(int[] massive)
+        /// <summary>
+        /// Split input array in half.
+        /// </summary>
+        /// <param name="array">Input array.</param>
+        /// <returns></returns>
+        public static int[] MergeSort(int[] array)
         {
-            if (massive.Length == 1)
+            if (ReferenceEquals(array, null))
             {
-                return massive;
+                throw new ArgumentNullException(Resources.NullArray);
             }
 
-            int middlePoint = massive.Length / 2;
+            if (array.Length == 1)
+            {
+                return array;
+            }
 
-            return Merge(MergeSort(massive.Take(middlePoint).ToArray()), MergeSort(massive.Skip(middlePoint).ToArray()));
+            int middlePoint = array.Length / 2;
+
+            return Merge(MergeSort(array.Take(middlePoint).ToArray()), MergeSort(array.Skip(middlePoint).ToArray()));
         }
 
-        private static int[] Merge(int[] leftMassive, int[] rightMassive)
+        /// <summary>
+        /// Sort divided arrays.
+        /// </summary>
+        /// <param name="leftArray"></param>
+        /// <param name="rightArray"></param>
+        /// <returns></returns>
+        private static int[] Merge(int[] leftArray, int[] rightArray)
         {
             int left = 0;
             int right = 0;
-            int[] sortedMassive = new int[leftMassive.Length + rightMassive.Length];
+            int[] sortedMassive = new int[leftArray.Length + rightArray.Length];
 
             for (int i = 0; i < sortedMassive.Length; i++)
             {
-                if (left < leftMassive.Length && right < rightMassive.Length)
+                if (left < leftArray.Length && right < rightArray.Length)
                 {
-                    if (rightMassive[right] > leftMassive[left])
+                    if (rightArray[right] > leftArray[left])
                     {
-                        sortedMassive[i] = leftMassive[left++];
+                        sortedMassive[i] = leftArray[left++];
                     }
                     else
                     {
-                        sortedMassive[i] = rightMassive[right++];
+                        sortedMassive[i] = rightArray[right++];
                     }
                 }
                 else
                 {
-                    if (right < rightMassive.Length)
+                    if (right < rightArray.Length)
                     {
-                        sortedMassive[i] = rightMassive[right++];
+                        sortedMassive[i] = rightArray[right++];
                     }
                     else
                     {
-                        sortedMassive[i] = leftMassive[left++];
+                        sortedMassive[i] = leftArray[left++];
                     }
                 }
             }
@@ -55,42 +72,64 @@ namespace NET.W._2018.Соколовский._01._5
             return sortedMassive;
         }
 
-        private static int Partition(int[] massive, int left, int right)
+        /// <summary>
+        /// Gets sorting pivot.
+        /// </summary>
+        /// <param name="array"></param>
+        /// <param name="left"></param>
+        /// <param name="right"></param>
+        /// <returns></returns>
+        private static int Partition(int[] array, int left, int right)
         {
             int temp;
             int pivot = left;
             for (int i = left; i <= right; i++)
             {
-                if (massive[i] < massive[right])
+                if (array[i] < array[right])
                 {
-                    temp = massive[pivot];
-                    massive[pivot] = massive[i];
-                    massive[i] = temp;
+                    temp = array[pivot];
+                    array[pivot] = array[i];
+                    array[i] = temp;
                     pivot += 1;
                 }
             }
 
-            temp = massive[pivot];
-            massive[pivot] = massive[right];
-            massive[right] = temp;
+            temp = array[pivot];
+            array[pivot] = array[right];
+            array[right] = temp;
             return pivot;
         }
 
-        private static void QuickSort(int[] massive, int left, int right)
+        /// <summary>
+        /// Sort input array by quick sorting method.
+        /// </summary>
+        /// <param name="array"></param>
+        /// <param name="left"></param>
+        /// <param name="right"></param>
+        private static void QuickSort(int[] array, int left, int right)
         {
             if (left >= right)
             {
                 return;
             }
 
-            int pivot = Partition(massive, left, right);
-            QuickSort(massive, left, pivot - 1);
-            QuickSort(massive, pivot + 1, right);
+            int pivot = Partition(array, left, right);
+            QuickSort(array, left, pivot - 1);
+            QuickSort(array, pivot + 1, right);
         }
 
-        public static void QuickSort(int[] massive)
+        /// <summary>
+        /// Sort input array by quick sorting method.
+        /// </summary>
+        /// <param name="array"></param>
+        public static void QuickSort(int[] array)
         {
-            QuickSort(massive, 0, massive.Length - 1);
+            if (ReferenceEquals(array, null))
+            {
+                throw new ArgumentNullException(Resources.NullArray);
+            }
+
+            QuickSort(array, 0, array.Length - 1);
         }
     }
 }

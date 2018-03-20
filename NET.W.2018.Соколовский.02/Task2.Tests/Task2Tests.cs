@@ -19,5 +19,12 @@ namespace Task2.Tests
             Assert.AreEqual(Task2.FindNextBiggerNumber(1234126), 1234162);
             Assert.AreEqual(Task2.FindNextBiggerNumber(3456432), 3462345);
         }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentOutOfRangeException))]
+        public void FindNextBiggerNumber_NegativeArg_ArgumentOutOfRangeExc()
+        {
+            Task2.FindNextBiggerNumber(-456);
+        }
     }
 }

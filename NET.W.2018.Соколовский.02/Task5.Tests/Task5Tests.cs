@@ -16,5 +16,19 @@ namespace Task5.Tests
             Assert.AreEqual(Task5.FindNthRoot(0.04100625, 4, 0.0001), 0.45);
             Assert.AreEqual(Task5.FindNthRoot(0.004241979, 9, 0.00000001), 0.545);
         }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentOutOfRangeException))]
+        public void FindNthRoot_NegativeDegree_ArgOutOfRangeExc()
+        {
+            Task5.FindNthRoot(1, -5, 0.0001);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentOutOfRangeException))]
+        public void FindNthRoot_NegativeAccuracy_ArgOutOfRangeExc()
+        {
+            Task5.FindNthRoot(1, 5, -5);
+        }
     }
 }

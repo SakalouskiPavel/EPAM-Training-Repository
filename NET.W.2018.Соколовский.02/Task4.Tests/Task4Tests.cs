@@ -33,5 +33,26 @@ namespace Task4.Tests
                 Assert.AreEqual(expectedArray[i], resultMassive[i]);
             }
         }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentOutOfRangeException))]
+        public void FindDigitTest_NegativeCriteria_ArgOutOfRangeExc()
+        {
+            Task4.FilterDigit(-7, new int[] {4, 5, 6});
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentOutOfRangeException))]
+        public void FindDigitTest_MoreThan9_ArgOutOfRangeExc()
+        {
+            Task4.FilterDigit(15, new int[] { 4, 5, 6 });
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void FindDigitTest_NullInputArray_ArgOutOfRangeExc()
+        {
+            Task4.FilterDigit(8, null);
+        }
     }
 }
