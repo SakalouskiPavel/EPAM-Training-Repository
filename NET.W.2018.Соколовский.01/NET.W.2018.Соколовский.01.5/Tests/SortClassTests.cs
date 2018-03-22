@@ -30,6 +30,7 @@ namespace Tests
             {
                 Assert.AreEqual(mergeSortResult[i], sortedMassive[i]);
             }
+
         }
 
         [TestMethod]
@@ -88,6 +89,7 @@ namespace Tests
             for (int i = 0; i < massive.Length; i++)
             {
                 Assert.AreEqual(massive[i], sortedMassive[i]);
+                Assert.Equals(massive, sortedMassive);
             }
         }
 
@@ -96,6 +98,8 @@ namespace Tests
         public void QuickSort_NullArray()
         {
             SortClass.QuickSort(null);
+            
+
         }
 
         #endregion

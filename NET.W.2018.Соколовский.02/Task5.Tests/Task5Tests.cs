@@ -1,34 +1,34 @@
 ﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
+
 
 namespace Task5.Tests
 {
-    [TestClass]
+    [TestFixture]
     public class Task5Tests
     {
-        [TestMethod]
-        public void FindNthRoot()
+        [TestCase(1, 5, 0.0001, ExpectedResult = 1)]
+        [TestCase(8, 3, 0.0001, ExpectedResult = 2)]
+        [TestCase(0.001, 3, 0.0001, ExpectedResult = 0.1)]
+        [TestCase(0.04100625, 4, 0.0001, ExpectedResult = 0.45)]
+        [TestCase(8, 3, 0.0001, ExpectedResult = 2)]
+        [TestCase(0.0279936, 7, 0.0001, ExpectedResult = 0.6)]
+        [TestCase(0.004241979, 9, 0.00000001, ExpectedResult = 0.545)]
+        public double FindNthRoot(double number, double degree, double accuracy)
         {
-            Assert.AreEqual(Task5.FindNthRoot(1, 5, 0.0001), 1);
-            Assert.AreEqual(Task5.FindNthRoot(8, 3, 0.0001), 2);
-            Assert.AreEqual(Task5.FindNthRoot(0.001, 3, 0.0001), 0.1);
-            Assert.AreEqual(Task5.FindNthRoot(0.0279936, 7, 0.0001), 0.6 );
-            Assert.AreEqual(Task5.FindNthRoot(0.04100625, 4, 0.0001), 0.45);
-            Assert.AreEqual(Task5.FindNthRoot(0.004241979, 9, 0.00000001), 0.545);
+            return Task5.FindNthRoot(number, degree, accuracy);
         }
 
-        [TestMethod]
-        [ExpectedException(typeof(ArgumentOutOfRangeException))]
-        public void FindNthRoot_NegativeDegree_ArgOutOfRangeExc()
+        [TestCase(1, -5, 0.0001)]
+        public void FindNthRoot_NegativeDegree_ArgOutOfRangeExc(double number, double degree, double accuracy)
         {
-            Task5.FindNthRoot(1, -5, 0.0001);
+            Assert.Throws<ArgumentOutOfRangeException>(() => Task5.FindNthRoot(number, degree, accuracy)) ;
         }
 
-        [TestMethod]
-        [ExpectedException(typeof(ArgumentOutOfRangeException))]
-        public void FindNthRoot_NegativeAccuracy_ArgOutOfRangeExc()
+        [TestCase(1, 5, -5)]
+        public void FindNthRoot_NegativeAccuracy_ArgOutOfRangeExc(double number, double degree, double accuracy)
         {
-            Task5.FindNthRoot(1, 5, -5);
+           Assert.Throws<ArgumentOutOfRangeException>(() => Task5.FindNthRoot(number, degree, accuracy)) ;
         }
     }
 }
