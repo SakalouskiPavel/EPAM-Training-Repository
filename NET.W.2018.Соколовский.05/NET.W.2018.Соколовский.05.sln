@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27130.2027
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NET.W.2018.Соколовский.05", "NET.W.2018.Соколовский.05\NET.W.2018.Соколовский.05.csproj", "{323C85EF-5658-46DB-9F84-B8C0E2EC6C88}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NET.W.2018.Соколовский.05.Tests", "NET.W.2018.Соколовский.05.Tests\NET.W.2018.Соколовский.05.Tests.csproj", "{53088A9E-0865-4BBD-91A9-AA2560453CE4}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{323C85EF-5658-46DB-9F84-B8C0E2EC6C88}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{323C85EF-5658-46DB-9F84-B8C0E2EC6C88}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{323C85EF-5658-46DB-9F84-B8C0E2EC6C88}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{323C85EF-5658-46DB-9F84-B8C0E2EC6C88}.Release|Any CPU.Build.0 = Release|Any CPU
+		{53088A9E-0865-4BBD-91A9-AA2560453CE4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{53088A9E-0865-4BBD-91A9-AA2560453CE4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{53088A9E-0865-4BBD-91A9-AA2560453CE4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{53088A9E-0865-4BBD-91A9-AA2560453CE4}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {0862676C-0908-4445-A729-EF0F72C92912}
+	EndGlobalSection
+EndGlobal
