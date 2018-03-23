@@ -11,6 +11,11 @@ namespace Task2
 {
     public static class Task2
     {
+        /// <summary>
+        /// Convert double number to binary view in string format
+        /// </summary>
+        /// <param name="inputNumber"></param>
+        /// <returns></returns>
         public static string ToBinaryString(this double inputNumber)
         {
             var inputNumberAsBytes = BitConverter.GetBytes(inputNumber);

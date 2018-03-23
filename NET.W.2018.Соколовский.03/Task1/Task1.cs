@@ -8,6 +8,12 @@ namespace Task1
 {
     public class Task1
     {
+        /// <summary>
+        /// Find greatest common divisor for two numbers by Evklid's algorithm.
+        /// </summary>
+        /// <param name="firstNumber"></param>
+        /// <param name="secondNumber"></param>
+        /// <returns></returns>
         public static int FindGCD(int firstNumber, int secondNumber)
         {
             while (secondNumber != 0)
@@ -20,6 +26,11 @@ namespace Task1
             return firstNumber;
         }
 
+        /// <summary>
+        /// Find greatest common divisor for array of numbers by Evklid's algorithm.
+        /// </summary>
+        /// <param name="args"></param>
+        /// <returns></returns>
         public static int FindGCD(params int[] args)
         {
             if (args.Length == 0)
@@ -35,6 +46,12 @@ namespace Task1
             return gcd;
         }
 
+        /// <summary>
+        /// Find greatest common divisor for two numbers by Stein's algorithm.
+        /// </summary>
+        /// <param name="a"></param>
+        /// <param name="b"></param>
+        /// <returns></returns>
         public static int FindBinaryGCD(int a, int b)
         {
             if (a == b)
@@ -76,6 +93,11 @@ namespace Task1
             return FindBinaryGCD((b - a) >> 1, a);
         }
 
+        /// <summary>
+        /// Find greatest common divisor for array of numbers by Stein's algorithm.
+        /// </summary>
+        /// <param name="args"></param>
+        /// <returns></returns>
         public static int FindBinaryGCD(params int[] args)
         {
             if (args.Length == 0)
