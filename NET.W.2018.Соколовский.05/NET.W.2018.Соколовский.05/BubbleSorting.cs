@@ -1,21 +1,28 @@
 ﻿using System;
+using NET.W._2018.Соколовский._05.Properties;
 
 namespace NET.W._2018.Соколовский._05
 {
     public static class BubbleSorting
     {
+        /// <summary>
+        /// Sorting of jagged array by bubble sorting method.
+        /// </summary>
+        /// <param name="inputArrays">Sorted array.</param>
+        /// <param name="function">Sorting criterion.</param>
+        /// <param name="ascending">Order by ascending/descending.</param>
         public static void BubbleSort(int[][] inputArrays, Func<int[], int> function, bool ascending = true)
         {
-            if (ReferenceEquals(inputArrays, null) || inputArrays.Length == 0)
+            if (ReferenceEquals(inputArrays, null) || inputArrays.Length == 0 || ReferenceEquals(function, null))
             {
-                throw new ArgumentNullException();
+                throw new ArgumentNullException(Resources.NullArgument);
             }
 
             foreach (var array in inputArrays)
             {
                 if (ReferenceEquals(array, null) || array.Length == 0)
                 {
-                    throw new ArgumentNullException();
+                    throw new ArgumentNullException(Resources.NullArray);
                 }
             }
 
@@ -50,6 +57,10 @@ namespace NET.W._2018.Соколовский._05
             }
         }
 
+        /// <summary>
+        /// Sorting of sz-array by bubble sorting method.
+        /// </summary>
+        /// <param name="inputArray">Sorted array.</param>
         private static void BubbleSort(int[] inputArray)
         {
             for (int i = 0; i < inputArray.Length; i++)

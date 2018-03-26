@@ -33,5 +33,37 @@ namespace NET.W._2018.Соколовский._05.Tests
             Polynomial resultPolynomial = firstPolynomial * secondPolynomial;
             return resultPolynomial.ToString();
         }
+
+        [TestCase(new double[3] {1, 2, 3}, new double[3] {1, 2, 3}, ExpectedResult = true)]
+        public bool PolynomialEquals_ValidData(double[] firstArray, double[] secondArray)
+        {
+            Polynomial firstPolynomial = new Polynomial(firstArray);
+            Polynomial secondPolynomial = new Polynomial(secondArray);
+            return firstPolynomial.Equals(secondPolynomial); 
+        }
+
+        [TestCase(new double[3] { 3, 3, 3 }, new double[3] { 1, 2, 3 }, ExpectedResult = false)]
+        public bool PolynomialEquals_InvalidData(double[] firstArray, double[] secondArray)
+        {
+            Polynomial firstPolynomial = new Polynomial(firstArray);
+            Polynomial secondPolynomial = new Polynomial(secondArray);
+            return firstPolynomial.Equals(secondPolynomial);
+        }
+
+        [TestCase(new double[3] { 3, 3, 3 }, null)]
+        public void PolynomialEquals_NullArray(double[] firstArray, double[] secondArray)
+        {
+            Polynomial firstPolynomial = new Polynomial(firstArray);
+            Polynomial secondPolynomial = new Polynomial(secondArray);
+            Assert.Throws<ArgumentNullException>(() => firstPolynomial.Equals(secondPolynomial));
+        }
+
+        [TestCase(new double[3] { 3, 3, 3 }, new double[3] { 1, 2, 3 }, ExpectedResult = false)]
+        public bool PolynomialEquals_NullObject(double[] firstArray, double[] secondArray)
+        {
+            Polynomial firstPolynomial = new Polynomial(firstArray);
+            Polynomial secondPolynomial = null;
+            return firstPolynomial.Equals(secondPolynomial);
+        }
     }
 }

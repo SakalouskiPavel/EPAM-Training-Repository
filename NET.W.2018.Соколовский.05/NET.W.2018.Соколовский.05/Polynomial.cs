@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.AccessControl;
 using System.Text;
 using System.Threading.Tasks;
+using NET.W._2018.Соколовский._05.Properties;
 
 namespace NET.W._2018.Соколовский._05
 {
@@ -33,6 +35,11 @@ namespace NET.W._2018.Соколовский._05
 
         public override string ToString()
         {
+            if (ReferenceEquals(this._coefficients, null))
+            {
+                throw new NullReferenceException(Resources.NullCoeficients);
+            }
+
             StringBuilder result = new StringBuilder();
             for (int i = this._coefficients.Length - 1; i >= 0; i--)
             {
@@ -47,6 +54,11 @@ namespace NET.W._2018.Соколовский._05
 
         public static Polynomial operator +(Polynomial firstOperand, Polynomial secondOperand)
         {
+            if (ReferenceEquals(firstOperand, null) || ReferenceEquals(secondOperand, null))
+            {
+                throw new ArgumentNullException(Resources.NullOperand);
+            }
+
             int greaterLength = firstOperand._coefficients.Length > secondOperand._coefficients.Length ?
                 firstOperand._coefficients.Length : secondOperand._coefficients.Length;
             double[] result = new double[greaterLength];
@@ -71,6 +83,11 @@ namespace NET.W._2018.Соколовский._05
 
         public static Polynomial operator -(Polynomial firstOperand, Polynomial secondOperand)
         {
+            if (ReferenceEquals(firstOperand, null) || ReferenceEquals(secondOperand, null))
+            {
+                throw new ArgumentNullException(Resources.NullOperand);
+            }
+
             int greaterLength = firstOperand._coefficients.Length > secondOperand._coefficients.Length ?
                 firstOperand._coefficients.Length : secondOperand._coefficients.Length;
             double[] result = new double[greaterLength];
@@ -95,6 +112,11 @@ namespace NET.W._2018.Соколовский._05
 
         public static Polynomial operator *(Polynomial firstOperand, Polynomial secondOperand)
         {
+            if (ReferenceEquals(firstOperand, null) || ReferenceEquals(secondOperand, null))
+            {
+                throw new ArgumentNullException(Resources.NullOperand);
+            }
+
             double[] result = new double[firstOperand._coefficients.Length + secondOperand._coefficients.Length - 1];
             for (int i = 0; i < firstOperand._coefficients.Length; i++)
             {
@@ -108,6 +130,12 @@ namespace NET.W._2018.Соколовский._05
 
         public static bool operator ==(Polynomial firstOperand, Polynomial secondOperand)
         {
+            if (ReferenceEquals(firstOperand, null) || ReferenceEquals(secondOperand, null) ||
+                ReferenceEquals(firstOperand._coefficients, null) || ReferenceEquals(secondOperand._coefficients, null))
+            {
+                throw new ArgumentNullException(Resources.NullOperand);
+            }
+
             if (firstOperand._coefficients.Length != secondOperand._coefficients.Length)
             {
                 return false;
