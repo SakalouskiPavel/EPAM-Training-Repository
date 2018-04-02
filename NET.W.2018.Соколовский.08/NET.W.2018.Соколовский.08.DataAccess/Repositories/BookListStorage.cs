@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using NET.W._2018.Соколовский._08.Common;
+using NET.W._2018.Соколовский._08.Common.Exceptions;
 using NET.W._2018.Соколовский._08.Common.Interfaces.Repositories;
 using NET.W._2018.Соколовский._08.Common.Models;
 
@@ -32,27 +33,28 @@ namespace NET.W._2018.Соколовский._08.DataAccess.Repositories
 
         public Book Add(Book book)
         {
-            using (var currentFileStream = new FileStream(_storagePath, FileMode.OpenOrCreate, FileAccess.Write, FileShare.Read))
+            if (ReferenceEquals(book, null))
             {
-                using (var currentBinaryWriter = new BinaryWriter(currentFileStream))
-                {
-                    currentBinaryWriter.Write(book.ISBN);
-                    currentBinaryWriter.Write(book.Author);
-                    currentBinaryWriter.Write(book.Cost);
-                    currentBinaryWriter.Write(book.Name);
-                    currentBinaryWriter.Write(book.PagesNumber);
-                    currentBinaryWriter.Write(book.PublicationYear);
-                    currentBinaryWriter.Write(book.Publisher);
-                }
+                throw new ArgumentNullException(nameof(book));
             }
 
-            _storage = this.LoadStorage();
+            if (this._storage.Any((b) => b.ISBN == book.ISBN))
+            {
+                throw  new AlreadyExistInStorageException();
+            }
 
+            this._storage = this._storage.Concat(new List<Book>(){book});
+            this.SaveStorage();
             return book;
         }
 
         public Book Delete(Book book)
         {
+            if (ReferenceEquals(book, null))
+            {
+                throw new ArgumentNullException(nameof(book));
+            }
+
             this._storage = this._storage.Except(new List<Book>() { book });
             SaveStorage();
             return book;
@@ -61,6 +63,11 @@ namespace NET.W._2018.Соколовский._08.DataAccess.Repositories
         public Book Delete(string isbn)
         {
             var currentBook = this._storage.FirstOrDefault((b) => b.ISBN == isbn);
+            if (ReferenceEquals(currentBook, null))
+            {
+                throw new ArgumentException(nameof(isbn));
+            }
+
             return Delete(currentBook);
         }
 

@@ -1,7 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using NET.W._2018.Соколовский._08.Common;
+using NET.W._2018.Соколовский._08.Common.Exceptions;
 using NET.W._2018.Соколовский._08.Common.Interfaces.Repositories;
 using NET.W._2018.Соколовский._08.Common.Models;
 
@@ -21,28 +23,28 @@ namespace NET.W._2018.Соколовский._08.DataAccess.Repositories
 
         public BankAccount Add(BankAccount bankAccount)
         {
-            using (var currentFileStream = new FileStream(_storagePath, FileMode.OpenOrCreate, FileAccess.Write, FileShare.Read))
+            if (ReferenceEquals(bankAccount, null))
             {
-                using (var currentBinaryWriter = new BinaryWriter(currentFileStream))
-                {
-                    currentBinaryWriter.Write(bankAccount.AccountId);
-                    currentBinaryWriter.Write(bankAccount.Ammount);
-                    currentBinaryWriter.Write(bankAccount.Bonus);
-                    currentBinaryWriter.Write(bankAccount.IsClosed);
-                    currentBinaryWriter.Write(bankAccount.OwnerFirstName);
-                    currentBinaryWriter.Write(bankAccount.OwnerLastName);
-                    currentBinaryWriter.Write((int)bankAccount.BankAccountType);
-                    currentBinaryWriter.Write(bankAccount.BonusRate);
-                }
+                throw new ArgumentNullException(nameof(bankAccount));
             }
 
-            _storage = this.LoadStorage();
+            if (this._storage.Any((a) => a.AccountId == bankAccount.AccountId))
+            {
+                throw new AlreadyExistInStorageException();
+            }
 
+            this._storage = this._storage.Concat(new List<BankAccount>() { bankAccount });
+            this.SaveStorage();
             return bankAccount;
         }
 
         public BankAccount Delete(BankAccount bankAccount)
         {
+            if (ReferenceEquals(bankAccount, null))
+            {
+                throw new ArgumentNullException(nameof(bankAccount));
+            }
+
             this._storage = this._storage.Except(new List<BankAccount>() { bankAccount });
             SaveStorage();
             return bankAccount;
@@ -50,13 +52,28 @@ namespace NET.W._2018.Соколовский._08.DataAccess.Repositories
 
         public BankAccount Get(int accountId)
         {
-            return this._storage.FirstOrDefault((a) => a.AccountId == accountId);
+            return this._storage?.FirstOrDefault((a) => a.AccountId == accountId);
+        }
+
+        public IEnumerable<BankAccount> GetAll()
+        {
+            return this._storage.ToList();
         }
 
         public BankAccount Update(BankAccount bankAccount)
         {
+            if (ReferenceEquals(bankAccount, null))
+            {
+                throw new ArgumentNullException(nameof(bankAccount));
+            }
+
             var updatedBankAccount = this._storage.FirstOrDefault((a) => a.AccountId == bankAccount.AccountId);
-            this._storage = this._storage.Except(new List<BankAccount>() { updatedBankAccount });
+
+            if (!ReferenceEquals(updatedBankAccount, null))
+            {
+                this._storage = this._storage.Except(new List<BankAccount>() {updatedBankAccount});
+            }
+
             this._storage = this._storage.Concat(new List<BankAccount>() { bankAccount });
             SaveStorage();
             return bankAccount;
@@ -69,7 +86,7 @@ namespace NET.W._2018.Соколовский._08.DataAccess.Repositories
             {
                 using (var currentBinaryReader = new BinaryReader(currentFileStream))
                 {
-                    while (currentBinaryReader.BaseStream.CanRead)
+                    while (currentBinaryReader.BaseStream.Position != currentBinaryReader.BaseStream.Length)
                     {
                         var accountId = currentBinaryReader.ReadInt32();
                         var ammount = currentBinaryReader.ReadDecimal();

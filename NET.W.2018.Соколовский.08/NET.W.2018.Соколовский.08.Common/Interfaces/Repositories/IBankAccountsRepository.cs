@@ -1,4 +1,5 @@
-﻿using NET.W._2018.Соколовский._08.Common.Models;
+﻿using System.Collections.Generic;
+using NET.W._2018.Соколовский._08.Common.Models;
 
 namespace NET.W._2018.Соколовский._08.Common.Interfaces.Repositories
 {
@@ -11,5 +12,7 @@ namespace NET.W._2018.Соколовский._08.Common.Interfaces.Repositories
         BankAccount Update(BankAccount bankAccount);
 
         BankAccount Delete(BankAccount bankAccount);
+
+        IEnumerable<BankAccount> GetAll();
     }
 }

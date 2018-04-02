@@ -2,6 +2,8 @@
 {
     public enum BankAccountTypes
     {
-        
+        Standart,
+        Gold,
+        Platinum
     }
 }

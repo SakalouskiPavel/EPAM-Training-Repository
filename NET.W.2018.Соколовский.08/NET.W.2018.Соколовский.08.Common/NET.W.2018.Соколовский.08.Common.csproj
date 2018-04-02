@@ -41,6 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Enums\BankAccountTypes.cs" />
+    <Compile Include="Exceptions\AlreadyExistInStorageException.cs" />
     <Compile Include="Interfaces\Repositories\IBankAccountsRepository.cs" />
     <Compile Include="Interfaces\Repositories\IBookRepository.cs" />
     <Compile Include="Interfaces\Services\IBankAccountService.cs" />

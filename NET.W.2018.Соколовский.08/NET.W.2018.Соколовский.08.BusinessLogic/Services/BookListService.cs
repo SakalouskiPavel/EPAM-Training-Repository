@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using NET.W._2018.Соколовский._08.Common;
 using NET.W._2018.Соколовский._08.Common.Interfaces.Repositories;
 using NET.W._2018.Соколовский._08.Common.Interfaces.Services;
@@ -17,6 +18,10 @@ namespace NET.W._2018.Соколовский._08.BusinessLogic.Services
 
         public Book AddBook(Book book)
         {
+            if (ReferenceEquals(book, null))
+            {
+                throw new ArgumentNullException(nameof(book));
+            }
             return this._storage.Add(book);
         }
 
@@ -27,6 +32,11 @@ namespace NET.W._2018.Соколовский._08.BusinessLogic.Services
 
         public Book RemoveBook(Book book)
         {
+            if (ReferenceEquals(book, null))
+            {
+                throw new ArgumentNullException(nameof(book));
+            }
+
             return this._storage.Delete(book); ;
         }
 
