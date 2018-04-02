@@ -4,16 +4,15 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{69D218F5-5A9B-4EA5-A610-015E8E54C9CB}</ProjectGuid>
-    <OutputType>Exe</OutputType>
-    <RootNamespace>NET.W._2018.Соколовский._08</RootNamespace>
-    <AssemblyName>NET.W.2018.Соколовский.08</AssemblyName>
+    <ProjectGuid>{A2407B50-8E38-47DF-A049-BCDD99CA19B0}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>NET.W._2018.Соколовский._08.BusinessLogic</RootNamespace>
+    <AssemblyName>NET.W.2018.Соколовский.08.BusinessLogic</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -23,7 +22,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -42,24 +40,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\BankAccountService.cs" />
+    <Compile Include="Services\BookListService.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\NET.W.2018.Соколовский.08.BusinessLogic\NET.W.2018.Соколовский.08.BusinessLogic.csproj">
-      <Project>{a2407b50-8e38-47df-a049-bcdd99ca19b0}</Project>
-      <Name>NET.W.2018.Соколовский.08.BusinessLogic</Name>
-    </ProjectReference>
     <ProjectReference Include="..\NET.W.2018.Соколовский.08.Common\NET.W.2018.Соколовский.08.Common.csproj">
       <Project>{623ea22f-2f1b-439e-9eb3-2c1ab06b06f7}</Project>
       <Name>NET.W.2018.Соколовский.08.Common</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\NET.W.2018.Соколовский.08.DataAccess\NET.W.2018.Соколовский.08.DataAccess.csproj">
-      <Project>{4163867c-fa8b-448f-941b-2e7e82c3b6af}</Project>
-      <Name>NET.W.2018.Соколовский.08.DataAccess</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

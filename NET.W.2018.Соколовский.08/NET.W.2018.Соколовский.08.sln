@@ -9,9 +9,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NET.W.2018.Соколовс
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NET.W.2018.Соколовский.08.Common", "NET.W.2018.Соколовский.08.Common\NET.W.2018.Соколовский.08.Common.csproj", "{623EA22F-2F1B-439E-9EB3-2C1AB06B06F7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NET.W.2018.Соколовский.08.BusinessLogic", "..\..\..\TemperProj\NET.W.2018.Соколовский.08.BusinessLogic\NET.W.2018.Соколовский.08.BusinessLogic\NET.W.2018.Соколовский.08.BusinessLogic.csproj", "{A2407B50-8E38-47DF-A049-BCDD99CA19B0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NET.W.2018.Соколовский.08.BusinessLogic", "NET.W.2018.Соколовский.08.BusinessLogic\NET.W.2018.Соколовский.08.BusinessLogic.csproj", "{A2407B50-8E38-47DF-A049-BCDD99CA19B0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NET.W.2018.Соколовский.08.DataAccess", "..\..\..\TemperProj\NET.W.2018.Соколовский.08.DataAccess\NET.W.2018.Соколовский.08.DataAccess\NET.W.2018.Соколовский.08.DataAccess.csproj", "{4163867C-FA8B-448F-941B-2E7E82C3B6AF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NET.W.2018.Соколовский.08.DataAccess", "NET.W.2018.Соколовский.08.DataAccess\NET.W.2018.Соколовский.08.DataAccess.csproj", "{4163867C-FA8B-448F-941B-2E7E82C3B6AF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
