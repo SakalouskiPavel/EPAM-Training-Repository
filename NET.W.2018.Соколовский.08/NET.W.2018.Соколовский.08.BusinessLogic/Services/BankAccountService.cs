@@ -14,6 +14,7 @@ namespace NET.W._2018.Соколовский._08.BusinessLogic.Services
         {
             this._storage = storage;
         }
+
         public BankAccount AddAccount(BankAccount bankAccount)
         {
             if (ReferenceEquals(bankAccount, null))
@@ -60,6 +61,7 @@ namespace NET.W._2018.Соколовский._08.BusinessLogic.Services
             {
                 throw new ArgumentException(nameof(accountId));
             }
+
             updatedBankAccount.Ammount = updatedBankAccount.Ammount + updatedBankAccount.Bonus + amount;
             return this._storage.Update(updatedBankAccount);
         }

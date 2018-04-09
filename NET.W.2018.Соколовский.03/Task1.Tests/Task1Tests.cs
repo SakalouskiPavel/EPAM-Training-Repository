@@ -16,7 +16,7 @@ namespace Task1.Tests
         [TestCase(int.MinValue + 1, int.MaxValue, ExpectedResult = int.MaxValue)]
         public int FindGCDTest(params int[] args)
         {
-            return Task1.FindGCD(args);
+            return Task1.FindGCD(Task1.FindEvklidGCD, args);
         }
 
         [TestCase(2, ExpectedResult = 2)]
@@ -26,7 +26,7 @@ namespace Task1.Tests
         [TestCase(ExpectedResult = 0)]
         public int FindBinaryGCDTest(params int[] args)
         {
-            return Task1.FindBinaryGCD(args);
+            return Task1.FindGCD(Task1.FindBinaryEvklidGCD, args);
         }
 
 

@@ -9,12 +9,39 @@ namespace Task1
     public class Task1
     {
         /// <summary>
+        /// Find greater common divisor by choosen method.
+        /// </summary>
+        /// <param name="method"></param>
+        /// <param name="inputArray"></param>
+        /// <returns></returns>
+        public static int FindGCD(Func<int, int, int> method, params int[] inputArray)
+        {
+            if (ReferenceEquals(method, null))
+            {
+                throw new ArgumentNullException(nameof(method));
+            }
+
+            if (inputArray.Length == 0)
+            {
+                return 0;
+            }
+
+            int i, gcd = inputArray[0];
+            for (i = 0; i < inputArray.Length - 1; i++)
+            {
+                gcd = method(gcd, inputArray[i + 1]);
+            }
+            return gcd;
+            
+        }
+
+        /// <summary>
         /// Find greatest common divisor for two numbers by Evklid's algorithm.
         /// </summary>
         /// <param name="firstNumber"></param>
         /// <param name="secondNumber"></param>
         /// <returns></returns>
-        public static int FindGCD(int firstNumber, int secondNumber)
+        public static int FindEvklidGCD(int firstNumber, int secondNumber)
         {
             while (secondNumber != 0)
             {
@@ -27,32 +54,12 @@ namespace Task1
         }
 
         /// <summary>
-        /// Find greatest common divisor for array of numbers by Evklid's algorithm.
-        /// </summary>
-        /// <param name="args"></param>
-        /// <returns></returns>
-        public static int FindGCD(params int[] args)
-        {
-            if (args.Length == 0)
-            {
-                return 0;
-            }
-
-            int i, gcd = args[0];
-            for (i = 0; i < args.Length - 1; i++)
-            {
-                gcd = FindGCD(gcd, args[i + 1]);
-            }
-            return gcd;
-        }
-
-        /// <summary>
         /// Find greatest common divisor for two numbers by Stein's algorithm.
         /// </summary>
         /// <param name="a"></param>
         /// <param name="b"></param>
         /// <returns></returns>
-        public static int FindBinaryGCD(int a, int b)
+        public static int FindBinaryEvklidGCD(int a, int b)
         {
             if (a == b)
             {
@@ -72,46 +79,25 @@ namespace Task1
             {
                 if ((b & 1) != 0)
                 {
-                    return FindBinaryGCD(a >> 1, b);
+                    return FindBinaryEvklidGCD(a >> 1, b);
                 }
                 else
                 {
-                    return FindBinaryGCD(a >> 1, b >> 1) << 1;
+                    return FindBinaryEvklidGCD(a >> 1, b >> 1) << 1;
                 }
             }
 
             if ((~b & 1) != 0)
             {
-                return FindBinaryGCD(a, b >> 1);
+                return FindBinaryEvklidGCD(a, b >> 1);
             }
 
             if (a > b)
             {
-                return FindBinaryGCD((a - b) >> 1, b);
+                return FindBinaryEvklidGCD((a - b) >> 1, b);
             }
 
-            return FindBinaryGCD((b - a) >> 1, a);
-        }
-
-        /// <summary>
-        /// Find greatest common divisor for array of numbers by Stein's algorithm.
-        /// </summary>
-        /// <param name="args"></param>
-        /// <returns></returns>
-        public static int FindBinaryGCD(params int[] args)
-        {
-            if (args.Length == 0)
-            {
-                return 0;
-            }
-
-            int i, gcd = args[0];
-            for (i = 0; i < args.Length - 1; i++)
-            {
-                gcd = FindBinaryGCD(gcd, args[i + 1]);
-            }
-
-            return gcd;
+            return FindBinaryEvklidGCD((b - a) >> 1, a);
         }
     }
 }

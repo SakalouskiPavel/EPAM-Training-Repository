@@ -1,13 +1,12 @@
 ﻿using System;
 using NUnit.Framework;
 
-
 namespace NET.W._2018.Соколовский._05.Tests
 {
     [TestFixture]
     public class PolynomialTests
     {
-        [TestCase(new double[3]{3, 4, 5}, new double[3] { 1, 2, 3 }, ExpectedResult = "8x^2 + 6x^1 + 4x^0")]
+        [TestCase(new double[3] { 3, 4, 5 }, new double[3] { 1, 2, 3 }, ExpectedResult = "8x^2 + 6x^1 + 4x^0")]
         public string AdditionOfPolinomials(double[] firstArray, double[] secondArray)
         {
             Polynomial firstPolynomial = new Polynomial(firstArray);
@@ -34,12 +33,12 @@ namespace NET.W._2018.Соколовский._05.Tests
             return resultPolynomial.ToString();
         }
 
-        [TestCase(new double[3] {1, 2, 3}, new double[3] {1, 2, 3}, ExpectedResult = true)]
+        [TestCase(new double[3] { 1, 2, 3 }, new double[3] { 1, 2, 3 }, ExpectedResult = true)]
         public bool PolynomialEquals_ValidData(double[] firstArray, double[] secondArray)
         {
             Polynomial firstPolynomial = new Polynomial(firstArray);
             Polynomial secondPolynomial = new Polynomial(secondArray);
-            return firstPolynomial.Equals(secondPolynomial); 
+            return firstPolynomial.Equals(secondPolynomial);
         }
 
         [TestCase(new double[3] { 3, 3, 3 }, new double[3] { 1, 2, 3 }, ExpectedResult = false)]

@@ -13,6 +13,7 @@
             BankAccountType = bankAccountType;
             BonusRate = bonusRate;
         }
+
         public int AccountId { get; }
 
         public string OwnerFirstName { get; }

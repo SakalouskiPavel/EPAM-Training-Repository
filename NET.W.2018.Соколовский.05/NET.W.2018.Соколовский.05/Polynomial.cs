@@ -17,41 +17,6 @@ namespace NET.W._2018.Соколовский._05
             this._coefficients = coefficients;
         }
 
-
-        public override bool Equals(object obj)
-        {
-            if (ReferenceEquals(obj, null) || !(obj is Polynomial))
-            {
-                return false;
-            }
-
-            return this == obj as Polynomial;
-        }
-
-        public override int GetHashCode()
-        {
-            return this._coefficients.GetHashCode();
-        }
-
-        public override string ToString()
-        {
-            if (ReferenceEquals(this._coefficients, null))
-            {
-                throw new NullReferenceException(Resources.NullCoeficients);
-            }
-
-            StringBuilder result = new StringBuilder();
-            for (int i = this._coefficients.Length - 1; i >= 0; i--)
-            {
-                result.Append($"{this._coefficients[i]}x^{i}");
-                if (i > 0)
-                {
-                    result.Append(" + ");
-                }
-            }
-            return result.ToString();
-        }
-
         public static Polynomial operator +(Polynomial firstOperand, Polynomial secondOperand)
         {
             if (ReferenceEquals(firstOperand, null) || ReferenceEquals(secondOperand, null))
@@ -125,6 +90,7 @@ namespace NET.W._2018.Соколовский._05
                     result[i + j] += secondOperand._coefficients[j] * firstOperand._coefficients[i];
                 }
             }
+
             return new Polynomial(result);
         }
 
@@ -148,12 +114,48 @@ namespace NET.W._2018.Соколовский._05
                     return false;
                 }
             }
+
             return true;
         }
 
         public static bool operator !=(Polynomial firstOperand, Polynomial secondOperand)
         {
             return !(firstOperand == secondOperand);
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (ReferenceEquals(obj, null) || !(obj is Polynomial))
+            {
+                return false;
+            }
+
+            return this == obj as Polynomial;
+        }
+
+        public override int GetHashCode()
+        {
+            return this._coefficients.GetHashCode();
+        }
+
+        public override string ToString()
+        {
+            if (ReferenceEquals(this._coefficients, null))
+            {
+                throw new NullReferenceException(Resources.NullCoeficients);
+            }
+
+            StringBuilder result = new StringBuilder();
+            for (int i = this._coefficients.Length - 1; i >= 0; i--)
+            {
+                result.Append($"{this._coefficients[i]}x^{i}");
+                if (i > 0)
+                {
+                    result.Append(" + ");
+                }
+            }
+
+            return result.ToString();
         }
     }
 }

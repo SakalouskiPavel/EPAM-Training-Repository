@@ -40,10 +40,10 @@ namespace NET.W._2018.Соколовский._08.DataAccess.Repositories
 
             if (this._storage.Any((b) => b.ISBN == book.ISBN))
             {
-                throw  new AlreadyExistInStorageException();
+                throw new AlreadyExistInStorageException();
             }
 
-            this._storage = this._storage.Concat(new List<Book>(){book});
+            this._storage = this._storage.Concat(new List<Book>() { book });
             this.SaveStorage();
             return book;
         }
@@ -75,32 +75,32 @@ namespace NET.W._2018.Соколовский._08.DataAccess.Repositories
         {
             switch (tag)
             {
-                case (SearchTags.Name):
+                case SearchTags.Name:
                     {
                         return this._storage.Where((b) => b.Name == value);
                     }
 
-                case (SearchTags.Author):
+                case SearchTags.Author:
                     {
                         return this._storage.Where((b) => b.Author == value);
                     }
 
-                case (SearchTags.Cost):
+                case SearchTags.Cost:
                     {
                         return this._storage.Where((b) => b.Cost == Convert.ToDecimal(value));
                     }
 
-                case (SearchTags.ISBN):
+                case SearchTags.ISBN:
                     {
                         return this._storage.Where((b) => b.ISBN == value);
                     }
 
-                case (SearchTags.Publisher):
+                case SearchTags.Publisher:
                     {
                         return this._storage.Where((b) => b.Publisher == value);
                     }
 
-                case (SearchTags.PublishingYear):
+                case SearchTags.PublishingYear:
                     {
                         return this._storage.Where((b) => b.PublicationYear == Convert.ToInt32(value));
                     }
@@ -116,40 +116,40 @@ namespace NET.W._2018.Соколовский._08.DataAccess.Repositories
         {
             switch (tag)
             {
-                case (SearchTags.Name):
-                {
-                    return this._storage.OrderBy((b) => b.Name);
-                }
+                case SearchTags.Name:
+                    {
+                        return this._storage.OrderBy((b) => b.Name);
+                    }
 
-                case (SearchTags.Author):
-                {
-                    return this._storage.OrderBy((b) => b.Author);
-                }
+                case SearchTags.Author:
+                    {
+                        return this._storage.OrderBy((b) => b.Author);
+                    }
 
-                case (SearchTags.Cost):
-                {
-                    return this._storage.OrderBy((b) => b.Cost);
-                }
+                case SearchTags.Cost:
+                    {
+                        return this._storage.OrderBy((b) => b.Cost);
+                    }
 
-                case (SearchTags.ISBN):
-                {
-                    return this._storage.OrderBy((b) => b.ISBN);
-                }
+                case SearchTags.ISBN:
+                    {
+                        return this._storage.OrderBy((b) => b.ISBN);
+                    }
 
-                case (SearchTags.Publisher):
-                {
-                    return this._storage.OrderBy((b) => b.Publisher);
-                }
+                case SearchTags.Publisher:
+                    {
+                        return this._storage.OrderBy((b) => b.Publisher);
+                    }
 
-                case (SearchTags.PublishingYear):
-                {
-                    return this._storage.OrderBy((b) => b.PublicationYear);
-                }
+                case SearchTags.PublishingYear:
+                    {
+                        return this._storage.OrderBy((b) => b.PublicationYear);
+                    }
 
                 default:
-                {
-                    throw new ArgumentException(nameof(tag));
-                }
+                    {
+                        throw new ArgumentException(nameof(tag));
+                    }
             }
         }
 

@@ -52,12 +52,14 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BubbleSortingDelegateTests.cs" />
     <Compile Include="BubbleSortingTests.cs" />
     <Compile Include="PolynomialTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <None Include="Settings.StyleCop" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\NET.W.2018.Соколовский.05\NET.W.2018.Соколовский.05.csproj">

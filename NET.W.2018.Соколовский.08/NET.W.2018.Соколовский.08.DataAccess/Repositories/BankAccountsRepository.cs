@@ -68,10 +68,9 @@ namespace NET.W._2018.Соколовский._08.DataAccess.Repositories
             }
 
             var updatedBankAccount = this._storage.FirstOrDefault((a) => a.AccountId == bankAccount.AccountId);
-
             if (!ReferenceEquals(updatedBankAccount, null))
             {
-                this._storage = this._storage.Except(new List<BankAccount>() {updatedBankAccount});
+                this._storage = this._storage.Except(new List<BankAccount>() { updatedBankAccount });
             }
 
             this._storage = this._storage.Concat(new List<BankAccount>() { bankAccount });

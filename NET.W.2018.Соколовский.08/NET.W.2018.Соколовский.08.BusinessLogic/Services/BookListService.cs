@@ -22,6 +22,7 @@ namespace NET.W._2018.Соколовский._08.BusinessLogic.Services
             {
                 throw new ArgumentNullException(nameof(book));
             }
+
             return this._storage.Add(book);
         }
 
@@ -37,7 +38,7 @@ namespace NET.W._2018.Соколовский._08.BusinessLogic.Services
                 throw new ArgumentNullException(nameof(book));
             }
 
-            return this._storage.Delete(book); ;
+            return this._storage.Delete(book);
         }
 
         public Book RemoveBook(string isbn)

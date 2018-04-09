@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using System.Text;
 
 namespace NET.W._2018.Соколовский._08.Common.Models
@@ -95,8 +96,43 @@ namespace NET.W._2018.Соколовский._08.Common.Models
         {
             var result = new StringBuilder();
             result.Append(this.Author);
-            result.Append(" ");
+            result.Append(", ");
             result.Append(this.Name);
+            return result.ToString();
+        }
+
+        public string ToShortString(IFormatProvider provider)
+        {
+            var result = new StringBuilder();
+
+            result.Append(this.ToString());
+            result.Append($", \"{this.Publisher}\", {this.PublicationYear}");
+           
+            return result.ToString();
+        }
+
+        public string ToLongString(IFormatProvider provider)
+        {
+            var result = new StringBuilder();
+            result.Append($"{this.ISBN}, ");
+            result.Append(this.ToShortString(provider));
+            result.Append($", P. {this.PagesNumber}");
+
+            return result.ToString();
+        }
+
+        public string ToFullString(IFormatProvider provider)
+        {
+            if (ReferenceEquals(provider, null))
+            {
+                provider = CultureInfo.CurrentCulture;
+            }
+
+            var result = new StringBuilder();
+            
+            result.Append(this.ToLongString(provider));
+            result.Append($", {this.Cost.ToString(provider)}");
+
             return result.ToString();
         }
 
@@ -139,6 +175,5 @@ namespace NET.W._2018.Соколовский._08.Common.Models
 
             return true;
         }
-
     }
 }

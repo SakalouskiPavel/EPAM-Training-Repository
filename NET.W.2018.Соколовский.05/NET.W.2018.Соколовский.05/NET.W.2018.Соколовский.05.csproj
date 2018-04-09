@@ -41,6 +41,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BubbleSorting.cs" />
+    <Compile Include="BubbleSortingDelegate.cs" />
+    <Compile Include="Comparers\MaxComparer.cs" />
+    <Compile Include="Comparers\MinComparer.cs" />
+    <Compile Include="Comparers\SumComparer.cs" />
     <Compile Include="Polynomial.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
@@ -54,6 +58,9 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Settings.StyleCop" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
