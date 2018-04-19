@@ -11,6 +11,14 @@ namespace NET.W._2018.Соколовский._11_12.Models
 {
     public static class BinarySearch 
     {
+        /// <summary>
+        /// Find element in collection by binary search method.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="collection"> Input collection.</param>
+        /// <param name="element"> Wanted element.</param>
+        /// <param name="comparer"></param>
+        /// <returns></returns>
         public static int Find<T>(this IEnumerable<T> collection, T element, IComparer<T> comparer)
         {
             if (ReferenceEquals(collection, null))

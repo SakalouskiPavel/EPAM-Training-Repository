@@ -8,7 +8,12 @@ namespace NET.W._2018.Соколовский._11_12.Models
 {
     public class FibonacciNumbers
     {
-        public IEnumerable<int> GetNumbers(int count)
+        /// <summary>
+        /// Get numbers from Fibonacci sequence.
+        /// </summary>
+        /// <param name="count"> Count of numbers. </param>
+        /// <returns></returns>
+        public static IEnumerable<int> GetNumbers(int count)
         {
             if (count < 1)
             {
@@ -19,7 +24,7 @@ namespace NET.W._2018.Соколовский._11_12.Models
             yield return current;
             int prev = 0;
             
-            for (int i = 0; i < count; i++)
+            for (int i = 0; i < count - 1; i++)
             {                
                 current = current + prev;
                 prev = current - prev;

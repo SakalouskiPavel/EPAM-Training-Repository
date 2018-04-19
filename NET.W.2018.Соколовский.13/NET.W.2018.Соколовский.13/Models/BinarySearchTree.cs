@@ -26,16 +26,25 @@ namespace NET.W._2018.Соколовский._13.Models
             }
         }
 
+        /// <summary>
+        /// Gets enumeration from binary search tree by in-order way.
+        /// </summary>
         public IEnumerable<T> InOrder
         {
             get { return InOrderSequence(this._root); }
         }
 
+        /// <summary>
+        /// Gets enumeration from binary search tree by pre-order way.
+        /// </summary>
         public IEnumerable<T> PreOrder
         {
             get { return PreOrderSequence(this._root); }
         }
 
+        /// <summary>
+        /// Gets enumeration from binary search tree by post-order way.
+        /// </summary>
         public IEnumerable<T> PostOrder
         {
             get { return PostOrderSequence(this._root); }
@@ -51,6 +60,10 @@ namespace NET.W._2018.Соколовский._13.Models
             return GetEnumerator();
         }
 
+        /// <summary>
+        /// Add element to binary search tree.
+        /// </summary>
+        /// <param name="data"> Added element.</param>
         public void Add(T data)
         {
             if (ReferenceEquals(data, null))
@@ -58,9 +71,14 @@ namespace NET.W._2018.Соколовский._13.Models
                 throw new ArgumentNullException(nameof(data));
             }
 
-            AddNode(data, this._root);
+            this._root = AddNode(data, this._root);
         }
 
+        /// <summary>
+        /// Find tree node with input value.
+        /// </summary>
+        /// <param name="data"> Input value.</param>
+        /// <returns></returns>
         public TreeNode<T> Find(T data)
         {
             if (ReferenceEquals(this._root, null))
@@ -73,7 +91,7 @@ namespace NET.W._2018.Соколовский._13.Models
                 return this._root;
             }
 
-            if (this._comparer.Compare(data, this._root.Data) > 0)
+            if (this._comparer.Compare(data, this._root.Data) < 0)
             {
                 return FindNode(data, this._root.Right);
             }
@@ -112,7 +130,7 @@ namespace NET.W._2018.Соколовский._13.Models
                 return node;
             }
 
-            if (this._comparer.Compare(data, node.Data) > 0)
+            if (this._comparer.Compare(data, node.Data) < 0)
             {
                 return FindNode(data, node.Right);
             }

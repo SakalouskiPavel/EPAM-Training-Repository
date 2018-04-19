@@ -26,14 +26,21 @@ namespace NET.W._2018.Соколовский._13.Models
             this._data = new T[this._capacity];
         }
 
+        /// <summary>
+        /// Count of elements in queue
+        /// </summary>
         public int Count
         {
             get { return this._data.Count(); }
         }
 
+        /// <summary>
+        /// Add element to queue.
+        /// </summary>
+        /// <param name="element"> Added element. </param>
         public void Enqueue(T element)
         {
-            while (this._position >= _capacity)
+            while (this._position >= _capacity - 1)
             {
                 this.IncreaseCapacity();
             }
@@ -41,6 +48,10 @@ namespace NET.W._2018.Соколовский._13.Models
             this._data[++this._position] = element;
         }
 
+        /// <summary>
+        /// Get and delete element from queue.
+        /// </summary>
+        /// <returns></returns>
         public T Dequeue()
         {
             if (this._position < 0)
@@ -51,6 +62,10 @@ namespace NET.W._2018.Соколовский._13.Models
             return this._data[this._position--];
         }
 
+        /// <summary>
+        /// Get element from queue without deleting.
+        /// </summary>
+        /// <returns></returns>
         public T Peek()
         {
             return this._data[this._position];

@@ -30,6 +30,15 @@ namespace NET.W._2018.Соколовский._13.Models
             }
         }
 
+        /// <summary>
+        /// Get matrix as array.
+        /// </summary>
+        /// <returns></returns>
+        public T[,] ToArray()
+        {
+            return this._matrix;
+        }
+
         protected abstract void CheckMatrix(T[,] matrix);
 
         protected virtual void CheckIndexes(int i, int j)
