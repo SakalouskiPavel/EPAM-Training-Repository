@@ -1,18 +1,18 @@
-﻿using BLL.Interface.Entities;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using DAL.Interface.DTO;
 
 namespace DAL.Interface.Interfaces
 {
     public interface IBankAccountsRepository
     {
-        BankAccount Get(int accountId);
+        BankAccountDTO Get(int accountId);
 
-        BankAccount Add(BankAccount bankAccount);
+        BankAccountDTO Add(BankAccountDTO bankAccount);
 
-        BankAccount Update(BankAccount bankAccount);
+        BankAccountDTO Update(BankAccountDTO bankAccount);
 
-        BankAccount Delete(BankAccount bankAccount);
+        BankAccountDTO Delete(BankAccountDTO bankAccount);
 
-        IEnumerable<BankAccount> GetAll();
+        IEnumerable<BankAccountDTO> GetAll();
     }
 }

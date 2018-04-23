@@ -4,7 +4,7 @@ namespace DAL.Interface.DTO
 {
     public class BankAccountDTO
     {
-        public BankAccount(int accountId, string ownerFirstName, string ownerLastName, decimal ammount, int bonus, bool isClosed, BankAccountTypes bankAccountType, int bonusRate)
+        public BankAccountDTO(int accountId, string ownerFirstName, string ownerLastName, decimal ammount, int bonus, bool isClosed, BankAccountTypesDTO bankAccountType, int bonusRate)
         {
             AccountId = accountId;
             OwnerFirstName = ownerFirstName;
@@ -32,5 +32,4 @@ namespace DAL.Interface.DTO
 
         public int BonusRate { get; }
     }
-}
 }

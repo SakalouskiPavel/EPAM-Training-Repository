@@ -11,27 +11,26 @@ using Ninject;
 
 namespace ConsolePL
 {
-    class Program
+    public class Program
     {
-
-        private static readonly IKernel resolver;
+        private static readonly IKernel Resolver;
 
         static Program()
         {
-            resolver = new StandardKernel();
-            resolver.ConfigurateResolve();
+            Resolver = new StandardKernel();
+            Resolver.ConfigurateResolve();
         }
 
-        static void Main(string[] args)
+        public static void Main(string[] args)
         {
-            IBankAccountService bankAccountService = resolver.Get<IBankAccountService>();
+            IBankAccountService bankAccountService = Resolver.Get<IBankAccountService>();
             var newBankAccount = new BankAccount(1, "FirstName", "LastName", 20, 0, false, BankAccountTypes.Standart, 10);
             Console.WriteLine(bankAccountService.AddAccount(newBankAccount));
             newBankAccount = new BankAccount(2, "FirstName2", "LastName2", 22, 3, false, BankAccountTypes.Gold, 20);
             Console.WriteLine(bankAccountService.AddAccount(newBankAccount));
             var bankAccountsList = bankAccountService.GetAllBankAccounts();
-            bankAccountService.TopUpInAnAccount(30, bankAccountsList.ToList()[0].AccountId);
-            bankAccountService.DebitTheAccount(10, bankAccountsList.ToList()[1].AccountId);
+            bankAccountService.Deposit(30, bankAccountsList.ToList()[0].AccountId);
+            bankAccountService.Withdraw(10, bankAccountsList.ToList()[1].AccountId);
 
             Console.ReadKey();
         }

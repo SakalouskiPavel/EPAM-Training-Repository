@@ -6,17 +6,15 @@ using DAL.Interface.Enums;
 
 namespace BLL.Mappers
 {
-    public static class CustomMapper 
+    public static class CustomMapper
     {
         static CustomMapper()
         {
             Mapper.Initialize(cfg =>
             {
-                cfg.CreateMap<BankAccount, BankAccountDTO>();
-                cfg.CreateMap<BankAccountTypes, BankAccountTypesDTO>();
+                cfg.CreateMap<BankAccount, BankAccountDTO>().ReverseMap();
+                cfg.CreateMap<BankAccountTypes, BankAccountTypesDTO>().ReverseMap();
             });
         }
-
-
     }
 }

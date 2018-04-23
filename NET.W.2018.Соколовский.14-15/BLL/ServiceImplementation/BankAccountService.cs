@@ -1,7 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using AutoMapper;
+using BLL.Interface;
 using BLL.Interface.Entities;
 using BLL.Interface.Interfaces;
+using BLL.Mappers;
+using DAL.Interface.DTO;
+using DAL.Interface.Enums;
 using DAL.Interface.Interfaces;
 
 namespace BLL.ServiceImplementation
@@ -15,16 +20,26 @@ namespace BLL.ServiceImplementation
             this._storage = storage;
         }
 
+        /// <summary>
+        /// Add new account.
+        /// </summary>
+        /// <param name="bankAccount"> Added account.</param>
+        /// <returns></returns>
         public BankAccount AddAccount(BankAccount bankAccount)
         {
             if (ReferenceEquals(bankAccount, null))
             {
                 throw new ArgumentNullException(nameof(bankAccount));
             }
-
-            return this._storage.Add(bankAccount);
+            
+            return Mapper.Map<BankAccount>(this._storage.Add(Mapper.Map<BankAccountDTO>(bankAccount)));
         }
 
+        /// <summary>
+        /// Make account closed.
+        /// </summary>
+        /// <param name="accountId"> Unique account identifier.</param>
+        /// <returns></returns>
         public BankAccount CloseAnAccount(int accountId)
         {
             var updatedBankAccount = this._storage.Get(accountId);
@@ -34,16 +49,27 @@ namespace BLL.ServiceImplementation
             }
 
             updatedBankAccount.IsClosed = true;
-            return this._storage.Update(updatedBankAccount);
+            return Mapper.Map<BankAccount>(this._storage.Update(updatedBankAccount));
         }
 
-        public BankAccount DebitTheAccount(decimal amount, int accountId)
+        /// <summary>
+        /// Withdraw money from an account.
+        /// </summary>
+        /// <param name="amount"> Withdraw amount.</param>
+        /// <param name="accountId"> Unique account identifier.</param>
+        /// <returns></returns>
+        public BankAccount Withdraw(decimal amount, int accountId)
         {
             var updatedBankAccount = this._storage.Get(accountId);
             updatedBankAccount.Ammount = updatedBankAccount.Ammount + updatedBankAccount.Bonus - amount;
-            return this._storage.Update(updatedBankAccount);
+            return Mapper.Map<BankAccount>(this._storage.Update(updatedBankAccount));
         }
 
+        /// <summary>
+        /// Remove an account from storage.
+        /// </summary>
+        /// <param name="bankAccount"> Removed account.</param>
+        /// <returns></returns>
         public BankAccount RemoveAccount(BankAccount bankAccount)
         {
             if (ReferenceEquals(bankAccount, null))
@@ -51,10 +77,16 @@ namespace BLL.ServiceImplementation
                 throw new ArgumentNullException(nameof(bankAccount));
             }
 
-            return this._storage.Delete(bankAccount);
+            return Mapper.Map<BankAccount>(this._storage.Delete(Mapper.Map<BankAccountDTO>(bankAccount)));
         }
 
-        public BankAccount TopUpInAnAccount(decimal amount, int accountId)
+        /// <summary>
+        /// Deposit money to account.
+        /// </summary>
+        /// <param name="amount"> Deposit amount.</param>
+        /// <param name="accountId"> Unique account identifier.</param>
+        /// <returns></returns>
+        public BankAccount Deposit(decimal amount, int accountId)
         {
             var updatedBankAccount = this._storage.Get(accountId);
             if (ReferenceEquals(updatedBankAccount, null))
@@ -63,12 +95,16 @@ namespace BLL.ServiceImplementation
             }
 
             updatedBankAccount.Ammount = updatedBankAccount.Ammount + updatedBankAccount.Bonus + amount;
-            return this._storage.Update(updatedBankAccount);
+            return Mapper.Map<BankAccount>(this._storage.Update(updatedBankAccount));
         }
 
+        /// <summary>
+        /// Gets all account from storage.
+        /// </summary>
+        /// <returns></returns>
         public IEnumerable<BankAccount> GetAllBankAccounts()
         {
-            return this._storage.GetAll();
+            return Mapper.Map<IEnumerable<BankAccount>>(this._storage.GetAll());
         }
     }
 }

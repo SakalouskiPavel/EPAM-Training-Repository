@@ -1,10 +1,12 @@
-﻿using BLL.Interface.Entities;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using BLL.Interface;
+using BLL.Interface.Entities;
 using BLL.Interface.Exceptions;
+using DAL.Interface.DTO;
+using DAL.Interface.Enums;
 using DAL.Interface.Interfaces;
 
 namespace DAL.Repositories
@@ -13,7 +15,7 @@ namespace DAL.Repositories
     {
         private string _storagePath;
 
-        private IEnumerable<BankAccount> _storage;
+        private IEnumerable<BankAccountDTO> _storage;
 
         public BankAccountsStorage(string storagePath)
         {
@@ -21,7 +23,7 @@ namespace DAL.Repositories
             this._storage = this.LoadStorage();
         }
 
-        public BankAccount Add(BankAccount bankAccount)
+        public BankAccountDTO Add(BankAccountDTO bankAccount)
         {
             if (ReferenceEquals(bankAccount, null))
             {
@@ -33,34 +35,34 @@ namespace DAL.Repositories
                 throw new AlreadyExistInStorageException();
             }
 
-            this._storage = this._storage.Concat(new List<BankAccount>() { bankAccount });
+            this._storage = this._storage.Concat(new List<BankAccountDTO>() { bankAccount });
             this.SaveStorage();
             return bankAccount;
         }
 
-        public BankAccount Delete(BankAccount bankAccount)
+        public BankAccountDTO Delete(BankAccountDTO bankAccount)
         {
             if (ReferenceEquals(bankAccount, null))
             {
                 throw new ArgumentNullException(nameof(bankAccount));
             }
 
-            this._storage = this._storage.Except(new List<BankAccount>() { bankAccount });
+            this._storage = this._storage.Except(new List<BankAccountDTO>() { bankAccount });
             SaveStorage();
             return bankAccount;
         }
 
-        public BankAccount Get(int accountId)
+        public BankAccountDTO Get(int accountId)
         {
             return this._storage?.FirstOrDefault((a) => a.AccountId == accountId);
         }
 
-        public IEnumerable<BankAccount> GetAll()
+        public IEnumerable<BankAccountDTO> GetAll()
         {
             return this._storage.ToList();
         }
 
-        public BankAccount Update(BankAccount bankAccount)
+        public BankAccountDTO Update(BankAccountDTO bankAccount)
         {
             if (ReferenceEquals(bankAccount, null))
             {
@@ -70,17 +72,17 @@ namespace DAL.Repositories
             var updatedBankAccount = this._storage.FirstOrDefault((a) => a.AccountId == bankAccount.AccountId);
             if (!ReferenceEquals(updatedBankAccount, null))
             {
-                this._storage = this._storage.Except(new List<BankAccount>() { updatedBankAccount });
+                this._storage = this._storage.Except(new List<BankAccountDTO>() { updatedBankAccount });
             }
 
-            this._storage = this._storage.Concat(new List<BankAccount>() { bankAccount });
+            this._storage = this._storage.Concat(new List<BankAccountDTO>() { bankAccount });
             SaveStorage();
             return bankAccount;
         }
 
-        private IEnumerable<BankAccount> LoadStorage()
+        private IEnumerable<BankAccountDTO> LoadStorage()
         {
-            var result = new List<BankAccount>();
+            var result = new List<BankAccountDTO>();
             using (var currentFileStream = new FileStream(_storagePath, FileMode.OpenOrCreate, FileAccess.Read, FileShare.Read))
             {
                 using (var currentBinaryReader = new BinaryReader(currentFileStream))
@@ -93,9 +95,9 @@ namespace DAL.Repositories
                         var isClosed = currentBinaryReader.ReadBoolean();
                         var ownerFirstName = currentBinaryReader.ReadString();
                         var ownerLastName = currentBinaryReader.ReadString();
-                        BankAccountTypes bankAccountType = (BankAccountTypes)currentBinaryReader.ReadInt32();
+                        BankAccountTypesDTO bankAccountType = (BankAccountTypesDTO)currentBinaryReader.ReadInt32();
                         var bonusRate = currentBinaryReader.ReadInt32();
-                        var loadedBankAccount = new BankAccount(accountId, ownerFirstName, ownerLastName, ammount, bonus, isClosed, bankAccountType, bonusRate);
+                        var loadedBankAccount = new BankAccountDTO(accountId, ownerFirstName, ownerLastName, ammount, bonus, isClosed, bankAccountType, bonusRate);
                         result.Add(loadedBankAccount);
                     }
                 }

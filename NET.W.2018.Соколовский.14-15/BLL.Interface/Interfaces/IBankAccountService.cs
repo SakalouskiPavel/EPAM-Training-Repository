@@ -5,9 +5,9 @@ namespace BLL.Interface.Interfaces
 {
     public interface IBankAccountService
     {
-        BankAccount TopUpInAnAccount(decimal amount, int accountId);
+        BankAccount Deposit(decimal amount, int accountId);
 
-        BankAccount DebitTheAccount(decimal amount, int accountId);
+        BankAccount Withdraw(decimal amount, int accountId);
 
         BankAccount AddAccount(BankAccount bankAccount);
 
