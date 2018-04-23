@@ -61,6 +61,11 @@ namespace BLL.ServiceImplementation
         public BankAccount Withdraw(decimal amount, int accountId)
         {
             var updatedBankAccount = this._storage.Get(accountId);
+            if (ReferenceEquals(updatedBankAccount, null))
+            {
+                throw new ArgumentException(nameof(accountId));
+            }
+
             updatedBankAccount.Ammount = updatedBankAccount.Ammount + updatedBankAccount.Bonus - amount;
             return Mapper.Map<BankAccount>(this._storage.Update(updatedBankAccount));
         }
