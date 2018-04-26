@@ -7,6 +7,7 @@ namespace NET.W._2018.Соколовский._16.Logger
     public class CustomLogger : ILogger
     {
         private string _logFilePath;
+
         public CustomLogger()
         {
             this._logFilePath = "log.txt";
@@ -28,7 +29,6 @@ namespace NET.W._2018.Соколовский._16.Logger
                 using (var writer = new BinaryWriter(stream))
                 {
                     writer.Write($"{DateTime.Now.ToShortTimeString()} - {message}; {Environment.NewLine}");
-
                 }
             }
         }

@@ -11,7 +11,7 @@ using Ninject;
 
 namespace NET.W._2018.Соколовский._16
 {
-    class Program
+    public class Program
     {
         private static IKernel _kernel;
 
@@ -21,16 +21,13 @@ namespace NET.W._2018.Соколовский._16
             _kernel.ConfigurateResolver();
         }
 
-        static void Main(string[] args)
+        public static void Main(string[] args)
         {
-            string path = "repo.txt";
             List<string> urls = new List<string>();
             urls.Add(@"https://github.com/AnzhelikaKravchuk?tab=repositories");
             urls.Add(@"https://github.com/AnzhelikaKravchuk/2017-2018.MMF.BSU");
             urls.Add(@"https://habrahabr.ru/company/it-grad/blog/341486/");
             urls.Add(@"urladdress");
-            //var storage = new UrlAddressRepository(path);
-            //var service = new UrlAddressService(storage);
             var service = _kernel.Get<IUrlAddressService>();
             foreach (string url in urls)
             {

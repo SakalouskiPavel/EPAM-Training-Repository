@@ -29,7 +29,6 @@ namespace NET.W._2018.Соколовский._16.Services
             }
         }
 
-
         /// <summary>
         /// Add url address to storage.
         /// </summary>

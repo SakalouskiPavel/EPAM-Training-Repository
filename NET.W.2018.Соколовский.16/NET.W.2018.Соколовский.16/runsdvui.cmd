@@ -1,0 +1,2 @@
+cd /d "H:\Projects\GitRepositories\EPAM-Training-Repository\NET.W.2018.Соколовский.16\NET.W.2018.Соколовский.16" &msbuild "NET.W.2018.Соколовский.16.csproj" /t:sdvViewer /p:configuration="Debug" /p:platform=Any CPU
+exit %errorlevel% 
