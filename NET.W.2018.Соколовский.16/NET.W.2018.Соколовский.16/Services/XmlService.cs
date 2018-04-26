@@ -10,15 +10,17 @@ namespace NET.W._2018.Соколовский._16.Services
 {
     public class XmlService : IXmlService
     {
-        public void SaveToXml(IEnumerable<UrlAddress> urlAddresses, string path)
+        /// <summary>
+        /// Serialize url addresses to xml.
+        /// </summary>
+        /// <param name="urlAddresses"> List of url addresses.</param>
+        /// <param name="path"> Path to xml file.</param>
+        public void SaveToXml(UrlAdressesList urlAddresses, string path)
         {
-            var serializer = new XmlSerializer(typeof(UrlAddress));
+            var serializer = new XmlSerializer(typeof(UrlAdressesList));
             using (var stream = new FileStream(path, FileMode.Create))
             {
-                foreach (UrlAddress urlAddress in urlAddresses)
-                {
-                    serializer.Serialize(stream, urlAddress);
-                }
+                    serializer.Serialize(stream, urlAddresses);
             }
         }
     }

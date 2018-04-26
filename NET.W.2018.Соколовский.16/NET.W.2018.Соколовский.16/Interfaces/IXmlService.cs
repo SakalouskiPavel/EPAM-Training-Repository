@@ -5,6 +5,6 @@ namespace NET.W._2018.Соколовский._16.Interfaces
 {
     public interface IXmlService
     {
-        void SaveToXml(IEnumerable<UrlAddress> urlAddresses, string path);
+        void SaveToXml(UrlAdressesList urlAddresses, string path);
     }
 }

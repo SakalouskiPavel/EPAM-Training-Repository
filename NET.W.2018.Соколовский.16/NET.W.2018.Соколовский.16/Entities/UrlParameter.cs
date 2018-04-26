@@ -3,7 +3,7 @@
 namespace NET.W._2018.Соколовский._16.Entities
 {
     [XmlRoot("parametr")]
-    public class UrlParametr
+    public class UrlParameter
     {
         [XmlAttribute("key")]
         public string Key { get; set; }

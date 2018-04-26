@@ -5,7 +5,8 @@ namespace NET.W._2018.Соколовский._16.Interfaces
 {
     public interface IUrlAddressService
     {
-        IEnumerable<UrlAddress> UrlAddresses { get; }
+        UrlAdressesList UrlAddresses { get; }
+
         void Add(string url);
 
         void Delete(string url);

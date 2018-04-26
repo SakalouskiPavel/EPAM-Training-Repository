@@ -19,7 +19,7 @@ namespace NET.W._2018.Соколовский._16.Entities
 
         [XmlArray("parameters")]
         [XmlArrayItem("parameter")]
-        public List<UrlParametr> Parametrs { get; set; }
+        public List<UrlParameter> Parameters { get; set; }
 
         public override string ToString()
         {
@@ -33,15 +33,15 @@ namespace NET.W._2018.Соколовский._16.Entities
                 }
             }
 
-            if (!ReferenceEquals(Parametrs, null))
+            if (!ReferenceEquals(Parameters, null))
             {
                 sb.Append("?");
-                foreach (var parametr in Parametrs)
+                foreach (var parameter in Parameters)
                 {
-                    sb.Append($"{parametr.Key}={parametr.Value}&");
+                    sb.Append($"{parameter.Key}={parameter.Value}&");
                 }
 
-                sb.Remove(sb.Length - 2, 1);
+                sb.Remove(sb.Length - 1, 1);
             }
 
             return sb.ToString();
