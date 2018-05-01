@@ -19,6 +19,7 @@ namespace BLL.Mappers
         }
 
         public static void Init()
-        { }
+        {
+        }
     }
 }

@@ -79,6 +79,10 @@ namespace DAL.Repositories
             return bankAccount;
         }
 
+        public void Dispose()
+        {
+        }
+
         private IEnumerable<BankAccountDTO> LoadStorage()
         {
             var result = new List<BankAccountDTO>();
@@ -124,10 +128,6 @@ namespace DAL.Repositories
                     }
                 }
             }
-        }
-
-        public void Dispose()
-        {
         }
     }
 }

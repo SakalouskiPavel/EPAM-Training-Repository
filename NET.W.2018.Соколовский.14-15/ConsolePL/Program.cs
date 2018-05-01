@@ -26,12 +26,10 @@ namespace ConsolePL
         public static void Main(string[] args)
         {
             CustomMapper.Init();
-            //var context = new CustomContext();
             using (Resolver)
             {
                 IBankAccountService bankAccountService = Resolver.Get<IBankAccountService>();
-                var newBankAccount = new BankAccount(1, "FirstName", "LastName", 20, 0, false,
-                    BankAccountTypes.Standart, 10);
+                var newBankAccount = new BankAccount(1, "FirstName", "LastName", 20, 0, false, BankAccountTypes.Standart, 10);
                 Console.WriteLine(bankAccountService.AddAccount(newBankAccount));
                 newBankAccount = new BankAccount(2, "FirstName2", "LastName2", 22, 3, false, BankAccountTypes.Gold, 20);
                 Console.WriteLine(bankAccountService.AddAccount(newBankAccount));

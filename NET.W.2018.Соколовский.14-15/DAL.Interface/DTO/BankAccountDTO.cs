@@ -7,7 +7,6 @@ namespace DAL.Interface.DTO
     {
         public BankAccountDTO()
         {
-            
         }
 
         public BankAccountDTO(int accountId, string ownerFirstName, string ownerLastName, decimal ammount, int bonus, bool isClosed, BankAccountTypesDTO bankAccountType, int bonusRate)

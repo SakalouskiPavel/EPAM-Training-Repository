@@ -24,11 +24,21 @@ namespace DAL.Repositories
 
         public BankAccountDTO Get(int accountId)
         {
+            if (accountId < 0)
+            {
+                throw new ArgumentException(nameof(accountId));
+            }
+
             return this._bankAccounts.SingleOrDefault(a => a.AccountId == accountId);
         }
 
         public BankAccountDTO Add(BankAccountDTO bankAccount)
         {
+            if (ReferenceEquals(bankAccount, null))
+            {
+                throw new ArgumentNullException(nameof(bankAccount));
+            }
+
             var result = this._bankAccounts.Add(bankAccount);
             this._context.SaveChanges();
             return result;
@@ -36,6 +46,11 @@ namespace DAL.Repositories
 
         public BankAccountDTO Update(BankAccountDTO bankAccount)
         {
+            if (ReferenceEquals(bankAccount, null))
+            {
+                throw new ArgumentNullException(nameof(bankAccount));
+            }
+
             var entity = Get(bankAccount.AccountId);
             entity = bankAccount;
             this._context.Entry(entity).State = EntityState.Modified;
@@ -45,6 +60,11 @@ namespace DAL.Repositories
 
         public BankAccountDTO Delete(BankAccountDTO bankAccount)
         {
+            if (ReferenceEquals(bankAccount, null))
+            {
+                throw new ArgumentNullException(nameof(bankAccount));
+            }
+
             var result = this._bankAccounts.Remove(bankAccount);
             this._context.SaveChanges();
             return result;
