@@ -1,9 +1,15 @@
-﻿using DAL.Interface.Enums;
+﻿using System.Security.Permissions;
+using DAL.Interface.Enums;
 
 namespace DAL.Interface.DTO
 {
     public class BankAccountDTO
     {
+        public BankAccountDTO()
+        {
+            
+        }
+
         public BankAccountDTO(int accountId, string ownerFirstName, string ownerLastName, decimal ammount, int bonus, bool isClosed, BankAccountTypesDTO bankAccountType, int bonusRate)
         {
             AccountId = accountId;
@@ -15,12 +21,12 @@ namespace DAL.Interface.DTO
             BankAccountType = bankAccountType;
             BonusRate = bonusRate;
         }
+        
+        public int AccountId { get; set; }
 
-        public int AccountId { get; }
+        public string OwnerFirstName { get; set; }
 
-        public string OwnerFirstName { get; }
-
-        public string OwnerLastName { get; }
+        public string OwnerLastName { get; set; }
 
         public decimal Ammount { get; set; }
 
@@ -28,8 +34,8 @@ namespace DAL.Interface.DTO
 
         public bool IsClosed { get; set; }
 
-        public BankAccountTypesDTO BankAccountType { get; }
+        public BankAccountTypesDTO BankAccountType { get; set; }
 
-        public int BonusRate { get; }
+        public int BonusRate { get; set; }
     }
 }

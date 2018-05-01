@@ -1,4 +1,5 @@
-﻿using AutoMapper;
+﻿using System.ComponentModel;
+using AutoMapper;
 using BLL.Interface;
 using BLL.Interface.Entities;
 using DAL.Interface.DTO;
@@ -16,5 +17,8 @@ namespace BLL.Mappers
                 cfg.CreateMap<BankAccountTypes, BankAccountTypesDTO>().ReverseMap();
             });
         }
+
+        public static void Init()
+        { }
     }
 }

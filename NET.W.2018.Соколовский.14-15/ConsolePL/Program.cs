@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using BLL.Interface;
 using BLL.Interface.Entities;
 using BLL.Interface.Interfaces;
+using BLL.Mappers;
+using DAL.Context;
 using DependencyResolver;
 using Ninject;
 
@@ -23,14 +25,20 @@ namespace ConsolePL
 
         public static void Main(string[] args)
         {
-            IBankAccountService bankAccountService = Resolver.Get<IBankAccountService>();
-            var newBankAccount = new BankAccount(1, "FirstName", "LastName", 20, 0, false, BankAccountTypes.Standart, 10);
-            Console.WriteLine(bankAccountService.AddAccount(newBankAccount));
-            newBankAccount = new BankAccount(2, "FirstName2", "LastName2", 22, 3, false, BankAccountTypes.Gold, 20);
-            Console.WriteLine(bankAccountService.AddAccount(newBankAccount));
-            var bankAccountsList = bankAccountService.GetAllBankAccounts();
-            bankAccountService.Deposit(30, bankAccountsList.ToList()[0].AccountId);
-            bankAccountService.Withdraw(10, bankAccountsList.ToList()[1].AccountId);
+            CustomMapper.Init();
+            //var context = new CustomContext();
+            using (Resolver)
+            {
+                IBankAccountService bankAccountService = Resolver.Get<IBankAccountService>();
+                var newBankAccount = new BankAccount(1, "FirstName", "LastName", 20, 0, false,
+                    BankAccountTypes.Standart, 10);
+                Console.WriteLine(bankAccountService.AddAccount(newBankAccount));
+                newBankAccount = new BankAccount(2, "FirstName2", "LastName2", 22, 3, false, BankAccountTypes.Gold, 20);
+                Console.WriteLine(bankAccountService.AddAccount(newBankAccount));
+                var bankAccountsList = bankAccountService.GetAllBankAccounts();
+                bankAccountService.Deposit(30, bankAccountsList.ToList()[0].AccountId);
+                bankAccountService.Withdraw(10, bankAccountsList.ToList()[1].AccountId);
+            }
 
             Console.ReadKey();
         }

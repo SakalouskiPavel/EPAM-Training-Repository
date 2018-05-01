@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using BLL.Interface;
-using BLL.Interface.Entities;
 using BLL.Interface.Exceptions;
 using DAL.Interface.DTO;
 using DAL.Interface.Enums;
@@ -125,6 +124,10 @@ namespace DAL.Repositories
                     }
                 }
             }
+        }
+
+        public void Dispose()
+        {
         }
     }
 }
