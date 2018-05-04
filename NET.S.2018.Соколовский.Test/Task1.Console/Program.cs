@@ -39,6 +39,7 @@ namespace Task1.Console
                 }
             }
 
+            Console.ReadKey();
         }
     }
 }
