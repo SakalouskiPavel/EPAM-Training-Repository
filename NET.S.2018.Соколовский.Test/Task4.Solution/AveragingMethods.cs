@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Task4
@@ -7,6 +8,16 @@ namespace Task4
     {
         public static double MedianMethod(List<double> values)
         {
+            if (ReferenceEquals(values, null))
+            {
+                throw new ArgumentNullException(nameof(values));
+            }
+
+            if (values.Count < 0)
+            {
+                throw new ArgumentException(nameof(values));
+            }
+
             var sortedValues = values.OrderBy(x => x).ToList();
 
             int n = sortedValues.Count;
@@ -21,6 +32,16 @@ namespace Task4
 
         public static double MeanMethod(List<double> values)
         {
+            if (ReferenceEquals(values, null))
+            {
+                throw new ArgumentNullException(nameof(values));
+            }
+
+            if (values.Count < 0)
+            {
+                throw new ArgumentException(nameof(values));
+            }
+
             return values.Sum() / values.Count;
         }
     }

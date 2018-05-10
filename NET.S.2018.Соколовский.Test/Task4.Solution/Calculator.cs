@@ -27,7 +27,7 @@ namespace Task4
 
             if (ReferenceEquals(Method, null))
             {
-                throw new ArgumentException("Invalid averagingMethod value");
+                throw new ArgumentException("Invalid averaging Method value");
             }
 
             return Method.Invoke(values);
