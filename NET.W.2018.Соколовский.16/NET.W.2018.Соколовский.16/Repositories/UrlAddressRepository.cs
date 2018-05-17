@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using NET.W._2018.Соколовский._16.Entities;
 using NET.W._2018.Соколовский._16.Interfaces;
 using NET.W._2018.Соколовский._16.Services;
 
@@ -11,7 +10,7 @@ namespace NET.W._2018.Соколовский._16.Repositories
     {
         private readonly string _storagePath;
 
-        private List<UrlAddress> _urlAddresses;
+        private List<Uri> _urlAddresses;
 
         public UrlAddressRepository(string storagePath)
         {
@@ -19,7 +18,7 @@ namespace NET.W._2018.Соколовский._16.Repositories
             LoadStorage();
         }
 
-        public UrlAddress Add(UrlAddress urlAddress)
+        public Uri Add(Uri urlAddress)
         {
             if (ReferenceEquals(urlAddress, null))
             {
@@ -31,7 +30,7 @@ namespace NET.W._2018.Соколовский._16.Repositories
             return urlAddress;
         }
 
-        public UrlAddress Delete(UrlAddress urlAddress)
+        public Uri Delete(Uri urlAddress)
         {
             if (ReferenceEquals(urlAddress, null))
             {
@@ -43,14 +42,14 @@ namespace NET.W._2018.Соколовский._16.Repositories
             return urlAddress;
         }
 
-        public IEnumerable<UrlAddress> GetAll()
+        public IEnumerable<Uri> GetAll()
         {
             return this._urlAddresses;
         }
 
         private void LoadStorage()
         {
-            var result = new List<UrlAddress>();
+            var result = new List<Uri>();
             using (var currentFileStream = new FileStream(this._storagePath, FileMode.OpenOrCreate, FileAccess.Read, FileShare.Read))
             {
                 using (var currentBinaryReader = new BinaryReader(currentFileStream))
@@ -58,7 +57,7 @@ namespace NET.W._2018.Соколовский._16.Repositories
                     while (currentBinaryReader.BaseStream.Position != currentBinaryReader.BaseStream.Length)
                     {
                         var stringUrl = currentBinaryReader.ReadString();
-                        result.Add(UrlAddressParserService.ConvertToUrl(stringUrl));
+                        result.Add(new Uri(stringUrl));
                     }
                 }
             }

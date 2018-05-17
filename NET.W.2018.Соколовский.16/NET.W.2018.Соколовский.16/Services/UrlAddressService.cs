@@ -1,7 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Serialization;
-using NET.W._2018.Соколовский._16.Entities;
 using NET.W._2018.Соколовский._16.Interfaces;
 
 namespace NET.W._2018.Соколовский._16.Services
@@ -18,15 +18,9 @@ namespace NET.W._2018.Соколовский._16.Services
         /// <summary>
         /// Gets url addresses list from storage.
         /// </summary>
-        public UrlAdressesList UrlAddresses
+        public List<Uri> UrlAddresses
         {
-            get
-            {
-                return new UrlAdressesList()
-                {
-                    UrlAddresses = this._storage.GetAll().ToList()
-                };
-            }
+            get { return this._storage.GetAll().ToList(); }
         }
 
         /// <summary>
@@ -35,7 +29,13 @@ namespace NET.W._2018.Соколовский._16.Services
         /// <param name="url"> Url address as string.</param>
         public void Add(string url)
         {
-            var addedUrlAddress = UrlAddressParserService.ConvertToUrl(url);
+            if (string.IsNullOrEmpty(url))
+            {
+                throw new ArgumentNullException(nameof(url));
+            }
+
+            Uri addedUrlAddress = UrlAddressParserService.ConvertToUrl(url);
+
             if (!ReferenceEquals(addedUrlAddress, null))
             {
                 this._storage.Add(addedUrlAddress);
@@ -48,7 +48,12 @@ namespace NET.W._2018.Соколовский._16.Services
         /// <param name="url"> Url address as string.</param>
         public void Delete(string url)
         {
-            var deletedUrlAddress = UrlAddressParserService.ConvertToUrl(url);
+            if (string.IsNullOrEmpty(url))
+            {
+                throw new ArgumentNullException(nameof(url));
+            }
+
+            Uri deletedUrlAddress = UrlAddressParserService.ConvertToUrl(url);
             this._storage.Delete(deletedUrlAddress);
         }
     }

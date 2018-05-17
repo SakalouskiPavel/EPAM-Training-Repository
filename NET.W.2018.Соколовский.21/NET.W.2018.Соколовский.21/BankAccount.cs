@@ -82,6 +82,11 @@ namespace NET.W._2018.Соколовский._21
 
         public void AddAccount(BankAccount account)
         {
+            if (ReferenceEquals(account, null))
+            {
+                throw new ArgumentNullException(nameof(account));
+            }
+
             _bankAccounts.Add(account);
             _context.SaveChanges();
             this._logger.Log("account was added");
@@ -94,6 +99,11 @@ namespace NET.W._2018.Соколовский._21
 
         public void RemoveAccount(BankAccount account)
         {
+            if (ReferenceEquals(account, null))
+            {
+                throw new ArgumentNullException(nameof(account));
+            }
+
             _bankAccounts.Remove(account);
             _context.SaveChanges();
             this._logger.Log("account was removed");
@@ -101,6 +111,11 @@ namespace NET.W._2018.Соколовский._21
 
         public BankAccount Update(BankAccount account)
         {
+            if (ReferenceEquals(account, null))
+            {
+                throw new ArgumentNullException(nameof(account));
+            }
+
             var entity = Get(account.AccountId);
             entity = account;
             _context.Entry(entity).State = EntityState.Modified;
@@ -118,6 +133,7 @@ namespace NET.W._2018.Соколовский._21
         {
             Dispose(true);
         }
+
 
         private void Dispose(bool flag)
         {

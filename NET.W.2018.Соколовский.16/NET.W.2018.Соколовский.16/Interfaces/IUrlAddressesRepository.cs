@@ -1,14 +1,15 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using NET.W._2018.Соколовский._16.Entities;
 
 namespace NET.W._2018.Соколовский._16.Interfaces
 {
     public interface IUrlAddressesRepository
     {
-        UrlAddress Add(UrlAddress urlAddress);
+        Uri Add(Uri urlAddress);
 
-        UrlAddress Delete(UrlAddress urlAddress);
+        Uri Delete(Uri urlAddress);
 
-        IEnumerable<UrlAddress> GetAll();
+        IEnumerable<Uri> GetAll();
     }
 }

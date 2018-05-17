@@ -47,9 +47,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DependencyResolver\ResolverConfig.cs" />
-    <Compile Include="Entities\UrlAddress.cs" />
-    <Compile Include="Entities\UrlAdressesList.cs" />
-    <Compile Include="Entities\UrlParameter.cs" />
     <Compile Include="Interfaces\ILogger.cs" />
     <Compile Include="Interfaces\IUrlAddressesRepository.cs" />
     <Compile Include="Interfaces\IUrlAddressService.cs" />
@@ -68,6 +65,7 @@
     <None Include="Settings.StyleCop" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Entities\" />
     <Folder Include="Mapper\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
